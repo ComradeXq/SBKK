@@ -5,12 +5,28 @@
 	<link rel ="stylesheet" href="style.css">
    <style type = "text/css">
     .container_server {
-      margin: 20px 40% 5px 40%;
+      margin: 20px 375px 5px 375px;
       text-align: center;
       background: #E4EFD1;
+    -webkit-column-width: 200px;
+    -moz-column-width: 200px;
+    column-width: 200px;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 30px;
+    -moz-column-gap: 30px;
+    column-gap: 30px;
+    -webkit-column-rule: 1px solid #ccc;
+    -moz-column-rule: 1px solid #ccc;
+    column-rule: 1px solid #ccc;      
     }
+
 </style>
 
+<script>
+onload = function () {setTimeout ('location.reload (true)', 60000)}
+</script>
 
 </HEAD>
 <body>
@@ -29,6 +45,10 @@ $result = pg_query($cn, "SELECT * FROM operator where login='$login'");
 //проверка результата
 $user1=pg_fetch_assoc($result);
 $role=$user1["role"];
+
+$result_user_id = pg_query($cn, "SELECT id_operator FROM operator WHERE login='$login'");
+$user_id=pg_fetch_assoc($result_user_id);
+$id=$user_id["id_operator"];
 
 if($_COOKIE['user'] == ''):
   header('Location: ERROR_PAGE.php');
@@ -60,15 +80,30 @@ elseif ($role=="admin"):
     </li>
   </ul>
 </nav>
+
+
 <?php
     $result_admin = pg_query($cn, "SELECT * FROM server");
     while ($server_admin=pg_fetch_assoc($result_admin)){ ?>
       <div class="container_server">
-      <a href="profile.php"> Сервер № <?php echo $server_admin["id_server"];?></a> 
-      <a> Модель сервера: <?php echo $server_admin["model"]?> </a>
-      <a> Имя сервера: <?php echo $server_admin["name"]?> </a>
-      <a> Инвентарный номер: <?php echo $server_admin["invent_num"]?> </a>
+      <a> Сервер № <?php 
+      $server_id=$server_admin["id_server"];
+      echo $server_id;?></a> 
+      <a > Модель сервера: <?php echo $server_admin["model"]?> </a>
+      <a> Имя сервера: <?php echo $server_admin["name"];?> </a>
+      <a> Инвентарный номер: <?php echo $server_admin["invent_num"];?> </a>
+      <a> </a>
+      <?php    
+        $result_data = pg_query($cn, "SELECT * FROM server_state WHERE id_server='$server_id'"); 
+        $data_res=pg_fetch_array($result_data);
+      ?>
+      <a >Статус сервера: <?php echo $data_res["status"] ?></a>
+      <a>Наличие дыма: <?php echo $data_res["smoke"] ?></a>
+      <a>Температура: <?php echo $data_res["temperature"] ?></a>
+      <a>Нагрузка CPU: <?php echo $data_res["cpu_load"] ?></a>   
+      <a>Дата телеметрии: <?php echo $data_res["date"] ?></a>
       </div>
+
 <?php
     }
 ?>
@@ -97,16 +132,25 @@ else: {
   </ul>
 </nav>
 <?php
-    $result_user_id = pg_query($cn, "SELECT id_operator FROM operator WHERE login='$login'");
-    $user_id=pg_fetch_assoc($result_user_id);
-    $id=$user_id["id_operator"];
     $result_user = pg_query($cn, "SELECT * FROM server WHERE id_operator='$id'");
     while ($server_admin=pg_fetch_assoc($result_user)){ ?>
       <div class="container_server">
-      <a href="profile.php"> Сервер № <?php echo $server_admin["id_server"];?></a> 
-      <a> Модель сервера: <?php echo $server_admin["model"]?> </a>
-      <a> Имя сервера: <?php echo $server_admin["name"]?> </a>
-      <a> Инвентарный номер: <?php echo $server_admin["invent_num"]?> </a>
+      <a> Сервер № <?php 
+      $server_id=$server_admin["id_server"];
+      echo $server_id;?></a> 
+      <a > Модель сервера: <?php echo $server_admin["model"]?> </a>
+      <a> Имя сервера: <?php echo $server_admin["name"];?> </a>
+      <a> Инвентарный номер: <?php echo $server_admin["invent_num"];?> </a>
+      <a> </a>
+      <?php    
+        $result_data = pg_query($cn, "SELECT * FROM server_state WHERE id_server='$server_id'"); 
+        $data_res=pg_fetch_array($result_data);
+      ?>
+      <a >Статус сервера: <?php echo $data_res["status"] ?></a>
+      <a>Наличие дыма: <?php echo $data_res["smoke"] ?></a>
+      <a>Температура: <?php echo $data_res["temperature"] ?></a>
+      <a>Нагрузка CPU: <?php echo $data_res["cpu_load"] ?></a>   
+      <a>Дата телеметрии: <?php echo $data_res["date"] ?></a>
       </div>
 <?php
     }
@@ -127,6 +171,11 @@ else: {
   		$(".five li ul").stop().fadeToggle(300);
   	}
 );
+setTimeout(function(){
+
+  location.reload();
+
+}, 30000);  
 
 </script>
 </HTML>
