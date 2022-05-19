@@ -63,25 +63,28 @@
     $role = $user["role"];
             if($_COOKIE['user'] != '' && $role=="admin"):
 ?>
-<h2 class="HeadText">Создание нового пользователя</h2>
+<h2 class="HeadText">Создание нового сервера</h2>
 <div class="imgcontainer">
     <img src="PhotoAuth/avatar.webp " alt = "Avatar" class="avatar">
 </div>
-<form action="create_user.php" method="post">
+<form action="create_server_app.php" method="post">
   <div class="container">
-    <label>Ввести полное имя пользователя 
-      <input placeholder="Enter full name" type="text" name="name_new" required>
+    <label>Ввести id оператора 
+      <input placeholder="Enter id operator" type="text" name="name_op_new" required>
     </label>
-    <label>Ввести логин пользователя 
-      <input placeholder="Enter login" type="text" name="login_new" required>
+    <label>Ввести инвентарный номер сервера
+      <input placeholder="Enter number of server" type="text" name="inv_new" required>
     </label>
-    <label>Ввести email пользователя
-      <input placeholder="Enter email" type="text" name="mail_new" required>
+    <label>Ввести имя сервера
+      <input placeholder="Enter name" type="text" name="name_new" required>
     </label>
-    <label>Ввести пароль пользователя 
-      <input placeholder="Enter Password" type="password" name="password_new" required>
+    <label>Ввести модель сервера 
+      <input placeholder="Enter model" type="password" name="model_new" required>
     </label>   
-    <button type="submit">Подтвердить изменения</button>
+    <label>Ввести описание сервера
+      <input placeholder="Enter description" type="password" name="desc_new" required>
+    </label>       
+    <button type="submit">Создать сервер</button>
   </form>
 <?php else: ?>
   <p class="container">Ошибка доступа</p>
