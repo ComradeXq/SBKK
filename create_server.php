@@ -22,7 +22,10 @@
       button{
         margin-top: 10px;
       }
-
+  .container {
+    padding: 0 40% 0 40%;
+    text-align: center;
+  }
     </style>
 
 </HEAD>
@@ -34,10 +37,10 @@
     <li><a href="#">Руководство пользователя<i class="fa fa-angle-down"></i></a>
       <ul class="submenu">
         <li><a href="user.php">Пользователь</a></li>
-        <li><a href="">Администратор</a></li>
+        <li><a href="admin_doc.html">Администратор</a></li>
       </ul>
     </li>
-    <li><a href="#">Контакты</a></li>
+    <li><a href="contact.html">Контакты</a></li>
     <li><a href="#">Пользователь</a>
         <ul class="submenu">
           <li><a href="profile.php">Страница пользователя</a></li>
@@ -79,10 +82,10 @@
       <input placeholder="Enter name" type="text" name="name_new" required>
     </label>
     <label>Ввести модель сервера 
-      <input placeholder="Enter model" type="password" name="model_new" required>
+      <input placeholder="Enter model" type="text" name="model_new" required>
     </label>   
     <label>Ввести описание сервера
-      <input placeholder="Enter description" type="password" name="desc_new" required>
+      <input placeholder="Enter description" type="text" name="desc_new" required>
     </label>       
     <button type="submit">Создать сервер</button>
   </form>

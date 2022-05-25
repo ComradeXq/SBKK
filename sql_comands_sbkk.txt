@@ -7,6 +7,7 @@ create sequence seq_operatorid;
 create sequence seq_serverid;
 create sequence seq_serverstatusid;
 create sequence seq_dataid;
+create sequence seq_servercommandid;
 
 create table operator (
 	id_operator int primary key default nextval('seq_operatorid'),
@@ -37,6 +38,13 @@ create table server_state (
 	date date not null default CURRENT_TIMESTAMP
 );
 
+create table server_commands(
+	id_command int primary key default nextval('seq_servercommandid'),
+	id_server int,
+	command int,
+	date_command date not null default CURRENT_TIMESTAMP	 
+);
+
 insert into server_state(id_server, status, smoke, temperature,cpu_load) values ('1','1','true','35','45');
 
 insert into operator (fullname, role, email, login, password, reg_date)
@@ -57,3 +65,4 @@ insert into server (id_operator, invent_num, name, description, model)
 values (3, 51, 'NServ1', 'North Server 1', 'Dell PowerEdge R243');
 insert into server (id_operator, invent_num, name, description, model)
 values (3, 52, 'NServ2', 'North Server 2', 'Dell PowerEdge R243');
+

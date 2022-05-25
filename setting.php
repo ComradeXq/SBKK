@@ -3,7 +3,13 @@
 <HEAD>
   <meta http-equiv="Content-Type" content="text/html: charset=utf-8">
   <link rel ="stylesheet" href="style.css">
+  <style type = "text/css">
 
+  .container {
+    padding: 0 40% 0 40%;
+    text-align: center;
+  }
+  </style>
 
 </HEAD>
 <body>
@@ -14,10 +20,10 @@
     <li><a href="#">Руководство пользователя<i class="fa fa-angle-down"></i></a>
       <ul class="submenu">
         <li><a href="user.php">Пользователь</a></li>
-        <li><a href="">Администратор</a></li>
+        <li><a href="admin_doc.html">Администратор</a></li>
       </ul>
     </li>
-    <li><a href="#">Контакты</a></li>
+    <li><a href="contact.html">Контакты</a></li>
     <li><a href="#">Пользователь</a>
         <ul class="submenu">
           <li><a href="profile.php">Страница пользователя</a></li>
